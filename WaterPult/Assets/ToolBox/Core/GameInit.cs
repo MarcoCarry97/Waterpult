@@ -13,7 +13,7 @@ namespace ToolBox.Core
             GameController gameState = GameObject.FindObjectOfType<GameController>();
             if (gameState == null)
             {
-                GameObject game = Resources.Load<GameObject>("Prefabs/Game/GameState");
+                GameObject game = Resources.Load<GameObject>("Core/GameController");
                 GameObject instance = Instantiate(game);
                 gameState = instance.GetComponent<GameController>();
             }
