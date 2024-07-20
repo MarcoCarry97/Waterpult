@@ -31,7 +31,7 @@ public class Vase : MonoBehaviour
         state= State.Thirsty;
         waterCount=this.GetComponentInChildren<WaterCount>();
         plant = this.transform.GetChild(0).gameObject;
-        flower=plant.transform.GetChild(0).gameObject;
+        flower = this.transform.Find("Flower").gameObject;
     }
 
     private void Update()
@@ -56,18 +56,21 @@ public class Vase : MonoBehaviour
     private void GrowingState()
     {
         Vector3 plantScale=plant.transform.localScale;
-        plantScale.y += 0.25f;
+        plantScale.y += 2f;
         plant.transform.localScale=plantScale;
         Vector3 pos = plant.transform.position;
-        pos += plant.transform.up * 0.5f*waterGained;
+        pos += plant.transform.up * 1f*waterGained;
         plant.transform.position=pos;
-        flower.transform.localScale = flower.transform.localScale - plant.transform.localScale*waterGained;
         state = (waterGained == waterNeeds) ? State.Grown : State.Thirsty;
     }
 
     private void GrownState()
     {
         flower.SetActive(true);
+        Vector3 pos=plant.transform.position;
+        pos += plant.transform.up * plant.transform.localScale.y/2;
+        pos.z=flower.transform.position.z;
+        flower.transform.position=pos;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
