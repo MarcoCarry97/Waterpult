@@ -10,6 +10,13 @@ public class Water : MonoBehaviour
 
     private bool destroyCondition=false;
 
+    private Rigidbody2D rigidbody;
+
+    private void Start()
+    {
+        rigidbody = this.GetComponent<Rigidbody2D>();
+    }
+
     private void Update()
     {
         if(destroyCondition)
@@ -29,5 +36,15 @@ public class Water : MonoBehaviour
         destroyCondition = true;
     }
 
+    public void Shoot()
+    {
+        rigidbody.isKinematic = false;
+    }
 
+
+    public void Hold(Vector3 position)
+    {
+        rigidbody.isKinematic = true;
+        this.rigidbody.position = position;
+    }
 }

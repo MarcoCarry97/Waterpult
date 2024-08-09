@@ -228,4 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802f6cd3ba1b4a448ba9a675f79b5d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panels: []
+  panels:
+  - {fileID: 661828970066159795, guid: f2c5b81ef9e313441afbb69df9caa6d0, type: 3}
+  - {fileID: 1004395673978541763, guid: 91000f78521e89541b64c060210e295f, type: 3}
+  - {fileID: 2618808524625797957, guid: c5ad2f957382953488f46c99f4ab9bf0, type: 3}
