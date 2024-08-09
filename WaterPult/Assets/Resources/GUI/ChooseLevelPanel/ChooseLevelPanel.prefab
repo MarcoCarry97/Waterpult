@@ -125,7 +125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.78666663}
   m_AnchorMax: {x: 0.9831303, y: 1}
-  m_AnchoredPosition: {x: 4.5000763, y: -0.76000977}
+  m_AnchoredPosition: {x: 4.5000916, y: -0.76000977}
   m_SizeDelta: {x: 8.5, y: 1.5100021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4183143688073141778
@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3156487633513053148, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: asset
+      value: 
+      objectReference: {fileID: 11400000, guid: 938df52becc6b8446a757ae150dc35d3, type: 2}
     - target: {fileID: 4297799298253087271, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
       propertyPath: m_Name
       value: LevelButton
@@ -453,6 +457,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3156487633513053148, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: asset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9606a763aa71a664590599d373be891d, type: 2}
     - target: {fileID: 4297799298253087271, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
       propertyPath: m_Name
       value: LevelButton (1)
@@ -559,6 +567,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3156487633513053148, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: asset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b24c5c112446ba4d86637e16893df2d, type: 2}
     - target: {fileID: 4297799298253087271, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
       propertyPath: m_Name
       value: LevelButton (2)

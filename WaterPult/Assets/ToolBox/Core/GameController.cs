@@ -26,12 +26,13 @@ namespace ToolBox.Core
 
         public PanelController Gui { get; private set; }        
         
+        public SystemController System { get; private set; }
 
         private void Start()
         {
             DontDestroyOnLoad(this.gameObject);
             Gui = this.GetComponent<PanelController>();
-            
+            System = this.GetComponent<SystemController>();
         }
 
         private void Awake()

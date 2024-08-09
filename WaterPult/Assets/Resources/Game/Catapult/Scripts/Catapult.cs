@@ -50,4 +50,9 @@ public class Catapult : MonoBehaviour
         return true;
     }
 
+    public bool HasBulletLoaded()
+    {
+        return instance != null;
+    }
+
 }

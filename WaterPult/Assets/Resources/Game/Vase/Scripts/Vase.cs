@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEngine;
 
 public class Vase : MonoBehaviour
@@ -82,5 +83,15 @@ public class Vase : MonoBehaviour
             waterGained++;
             state = State.Growing;
         }
+    }
+
+    public bool IsBloomed()
+    {
+        return state==State.Grown;
+    }
+
+    public int GetWaterNeeds()
+    {
+        return waterNeeds;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ToolBox.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class LevelButton : MonoBehaviour
 
     private void OnClick()
     {
-        asset.LoadScene();
+        GameController.Instance.System.Level = asset;
+        GameController.Instance.Gui.DeactivePanel();
     }
 }
