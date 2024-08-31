@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -61,7 +60,7 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
-        SpawnBullet();
+        //SpawnBullet();
         switch(state)
         {
             case State.Get:

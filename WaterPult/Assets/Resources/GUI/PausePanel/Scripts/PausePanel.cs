@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ToolBox.Core;
 using ToolBox.GUI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PausePanel : Panel
@@ -25,11 +27,15 @@ public class PausePanel : Panel
 
     private void OnQuit()
     {
-        Application.Quit();
+        Time.timeScale = 1;
+        GameController.Instance.Gui.Clear();
+        GameController.Instance.System.Clear();
+        SceneManager.LoadScene("MainScene");
     }
 
     private void OnPlay()
     {
-
+        Time.timeScale = 1;
+        GameController.Instance.Gui.DeactivePanel();
     }
 }

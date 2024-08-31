@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,13 @@ public class LevelAsset : ScriptableObject
     [SerializeField]
     private string sceneName;
 
-    public void LoadScene()
+    public IEnumerator LoadScene(Action OnSceneLoaded)
     {
-        SceneManager.LoadScene(sceneName);
+        AsyncOperation operation=SceneManager.LoadSceneAsync(sceneName);
+        while (!operation.isDone)
+            yield return null;
+        yield return new WaitForEndOfFrame();
+        OnSceneLoaded();
+        yield return new WaitForEndOfFrame();
     }
 }

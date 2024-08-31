@@ -25,8 +25,13 @@ public class Water : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.collider.CompareTag("VaseGround"))
-            destroyCondition = true;
+        {
+            Vase vase=collision.collider.transform.parent.GetComponent<Vase>();
+            if(!vase.IsBloomed())
+                destroyCondition = true;
+        }
         else StartCoroutine(WaitingForDestroy());
     }
 

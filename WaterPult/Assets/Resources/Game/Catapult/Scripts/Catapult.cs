@@ -45,7 +45,7 @@ public class Catapult : MonoBehaviour
         instance.Shoot();
         Vector2 vector=middle - instance.transform.position;
         Rigidbody2D rigidbody = instance.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(vector*10000);
+        rigidbody.AddForce(vector*5500);
         instance = null;
         return true;
     }

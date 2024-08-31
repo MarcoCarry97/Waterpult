@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using ToolBox.Core;
+using ToolBox.GUI;
 using UnityEngine;
 
 public class SystemController : MonoBehaviour
@@ -11,11 +13,11 @@ public class SystemController : MonoBehaviour
 
     private List<Vase> vases;
 
-    private int numberOfBullets;
-
     private Catapult catapult;
 
-    private int shotBullets;
+    private Coroutine coroutine;
+
+    public int AvailableBullets { get; private set; }
 
     private enum State
     {
@@ -31,11 +33,13 @@ public class SystemController : MonoBehaviour
         state = State.Preparing;
         Level = null;
         vases = null;
-        shotBullets= 0;
     }
+
+
 
     private void Update()
     {
+
         switch(state)
         {
             case State.Preparing:
@@ -50,23 +54,42 @@ public class SystemController : MonoBehaviour
         }
     }
 
+    private void UpdateGui()
+    {
+        Panel panel = GameController.Instance.Gui.GetActivePanel();
+        GamePanel game = panel as GamePanel;
+        if (game != null)
+        {
+            TextMeshProUGUI textview=game.GetComponentInChildren<TextMeshProUGUI>();
+            textview.text=$": {AvailableBullets}";
+        }
+    }
+
     private void ResultState()
     {
-        
+        ResultPanel panel=GameController.Instance.Gui.GetActivePanel() as ResultPanel;
+        bool allBloomed = vases.Select<Vase, bool>(vase => vase.IsBloomed()).Aggregate<bool>((acc, data) => acc && data);
+        panel.Result = allBloomed ? "You Win!" : "Game Over";
+
     }
 
     private void PlayingState()
     {
 
         catapult =GameObject.FindObjectOfType<Catapult>();
-        if(catapult.HasBulletLoaded() && shotBullets<numberOfBullets)
+        List<GameObject> runningBullets = GameObject.FindGameObjectsWithTag("Water").ToList<GameObject>();
+        bool allDisappeared = runningBullets.Count() == 0;
+        if (!catapult.HasBulletLoaded()&& AvailableBullets>0 && allDisappeared)
         {
             catapult.Load();
-            shotBullets++;
+            AvailableBullets--;
+            UpdateGui();
         }
         bool allBloomed = vases.Select<Vase, bool>(vase => vase.IsBloomed()).Aggregate<bool>((acc, data) => acc && data);
-        bool allShot = shotBullets == numberOfBullets && !catapult.HasBulletLoaded();
-        if (allBloomed || allShot)
+        bool allShot = AvailableBullets==0 && !catapult.HasBulletLoaded();
+        runningBullets = GameObject.FindGameObjectsWithTag("Water").ToList<GameObject>();
+        allDisappeared = runningBullets.Count() == 0;
+        if (allBloomed || (allShot && allDisappeared))
         {
             GameController.Instance.Gui.ActivePanel("ResultPanel");
             state = State.Result;
@@ -75,15 +98,23 @@ public class SystemController : MonoBehaviour
 
     private void PreparingState()
     {
-        if (Level != null)
+        if (Level != null && coroutine==null)
         {
-            Level.LoadScene();
-            state = State.Playing;
-            vases = GameObject.FindObjectsOfType<Vase>().ToList<Vase>();
-            numberOfBullets = vases.Select<Vase, int>((vase) => vase.GetWaterNeeds() + 1).Aggregate<int>((acc, data )=> acc + data);
-            GameController.Instance.Gui.ActivePanel("GamePanel");
+            coroutine=StartCoroutine(Level.LoadScene(()=>
+            {
+                state = State.Playing;
+                vases = GameObject.FindObjectsOfType<Vase>().ToList<Vase>();
+                AvailableBullets = vases.Select<Vase, int>((vase) => vase.GetWaterNeeds() + 1).Aggregate<int>((acc, data) => acc + data);
+                GameController.Instance.Gui.ActivePanel("GamePanel");
+                coroutine= null;
+            }));
+            
         }
     }
 
+    public void Clear()
+    {
+        Start();
+    }
 
 }
