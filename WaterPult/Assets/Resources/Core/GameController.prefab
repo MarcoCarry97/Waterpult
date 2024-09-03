@@ -203,7 +203,7 @@ Transform:
   m_Children:
   - {fileID: 5812231033375263435}
   - {fileID: 1150897552755436562}
-  - {fileID: 570815070179074138}
+  - {fileID: 7832166978193072877}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &643218626475369713
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f7178441c269142a7e3b09e9292ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &642850461041418552
+--- !u!1001 &7183626235008344975
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2472084133741290308, guid: 527a3a02f10350e4daaa82fe985a76a0, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c8e194da3765244babf841caaa0984a, type: 3}
     - target: {fileID: 3162855606686220768, guid: 527a3a02f10350e4daaa82fe985a76a0, type: 3}
       propertyPath: m_Name
       value: SoundtrackSource
@@ -305,8 +309,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 527a3a02f10350e4daaa82fe985a76a0, type: 3}
---- !u!4 &570815070179074138 stripped
+--- !u!4 &7832166978193072877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1080912695699915106, guid: 527a3a02f10350e4daaa82fe985a76a0, type: 3}
-  m_PrefabInstance: {fileID: 642850461041418552}
+  m_PrefabInstance: {fileID: 7183626235008344975}
   m_PrefabAsset: {fileID: 0}

@@ -36,8 +36,8 @@ public class DragAndDrop2D : MonoBehaviour
         {
             Rigidbody2D rigidbody=draggedObject.GetComponent<Rigidbody2D>();
             rigidbody.isKinematic = true;
-
-            draggedObject.position = position;
+            Catapult catapult=this.GetComponent<Catapult>();
+            catapult.SetBulletPosition(position);
             return true;
         }
         else return false;

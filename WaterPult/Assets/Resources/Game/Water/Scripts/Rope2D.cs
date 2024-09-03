@@ -15,6 +15,8 @@ public class Rope2D : MonoBehaviour
     [Range(1, 100)]
     private float ropeLength;
 
+    public float Length {  get { return ropeLength; } }
+
     public void Attach(Transform obj)
     {
         attached = obj;

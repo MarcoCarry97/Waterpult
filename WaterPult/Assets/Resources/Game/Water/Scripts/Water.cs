@@ -12,9 +12,21 @@ public class Water : MonoBehaviour
 
     private Rigidbody2D rigidbody;
 
+    public enum State
+    {
+        Rest,
+        Charging,
+        Shot
+    }
+
+    public State Status { get; private set; }
+
+
+
     private void Start()
     {
         rigidbody = this.GetComponent<Rigidbody2D>();
+        Status = State.Rest;
     }
 
     private void Update()
@@ -44,6 +56,7 @@ public class Water : MonoBehaviour
     public void Shoot()
     {
         rigidbody.isKinematic = false;
+        Status = State.Shot;
     }
 
 
@@ -51,5 +64,6 @@ public class Water : MonoBehaviour
     {
         rigidbody.isKinematic = true;
         this.rigidbody.position = position;
+        Status=State.Charging;
     }
 }
