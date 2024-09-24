@@ -41,7 +41,6 @@ public class ButtonSound : MonoBehaviour, ISelectHandler
 
     void ISelectHandler.OnSelect(BaseEventData eventData)
     {
-        source.Stop();
         source.clip = selectedClip;
         source.Play();
     }

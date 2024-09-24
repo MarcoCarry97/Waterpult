@@ -33,10 +33,12 @@ namespace ToolBox.Core
             DontDestroyOnLoad(this.gameObject);
             Gui = this.GetComponent<PanelController>();
             System = this.GetComponent<SystemController>();
+            Time.timeScale = 2;
         }
 
         private void Awake()
         {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
             Start();
         }
 

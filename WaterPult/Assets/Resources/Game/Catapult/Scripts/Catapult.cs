@@ -17,6 +17,11 @@ public class Catapult : MonoBehaviour
     [SerializeField]
     private float force;
 
+    [SerializeField]
+    private ForceMode2D forceMode;
+
+    private CatapultSound sound;
+
     private Water instance;
 
     public Vector3 Velocity { get;private set; }
@@ -33,6 +38,7 @@ public class Catapult : MonoBehaviour
     {
         instance = null;
         Status= State.Shot;
+        sound=this.GetComponent<CatapultSound>();
     }
 
     private void Update()
@@ -59,6 +65,7 @@ public class Catapult : MonoBehaviour
             Status=State.Charging;
             return true;
         }
+
         else return false;
     }
 
@@ -68,8 +75,9 @@ public class Catapult : MonoBehaviour
             anchor.Detach();
         instance.Shoot();
         Rigidbody2D rigidbody = instance.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(Velocity*100);
+        rigidbody.AddForce(Velocity*100,forceMode);
         instance = null;
+        sound.DoSoundShot();
         return true;
     }
 
@@ -94,6 +102,7 @@ public class Catapult : MonoBehaviour
             if (positionToMiddle.magnitude > middleDistance)
                 position = middle - positionToMiddle.normalized * middleDistance;
             instance.transform.position = position;
+            sound.DoSoundStretch();
         }
     }
 }

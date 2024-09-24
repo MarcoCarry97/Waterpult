@@ -24,7 +24,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Mouse"",
+            ""name"": ""Commands"",
             ""id"": ""df8d55bf-b834-45b2-9105-67cc07158518"",
             ""actions"": [
                 {
@@ -60,8 +60,30 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""9d8ce36d-66e8-4567-9429-181342b85b43"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""aea5dbb8-96bc-4c11-b733-81decdf8951d"",
                     ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96f2de64-ab31-4648-b21b-ae5dd9c9163a"",
+                    ""path"": ""<Touchscreen>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -74,10 +96,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Mouse
-        m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
-        m_Mouse_Press = m_Mouse.FindAction("Press", throwIfNotFound: true);
-        m_Mouse_Position = m_Mouse.FindAction("Position", throwIfNotFound: true);
+        // Commands
+        m_Commands = asset.FindActionMap("Commands", throwIfNotFound: true);
+        m_Commands_Press = m_Commands.FindAction("Press", throwIfNotFound: true);
+        m_Commands_Position = m_Commands.FindAction("Position", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -136,26 +158,26 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Mouse
-    private readonly InputActionMap m_Mouse;
-    private List<IMouseActions> m_MouseActionsCallbackInterfaces = new List<IMouseActions>();
-    private readonly InputAction m_Mouse_Press;
-    private readonly InputAction m_Mouse_Position;
-    public struct MouseActions
+    // Commands
+    private readonly InputActionMap m_Commands;
+    private List<ICommandsActions> m_CommandsActionsCallbackInterfaces = new List<ICommandsActions>();
+    private readonly InputAction m_Commands_Press;
+    private readonly InputAction m_Commands_Position;
+    public struct CommandsActions
     {
         private @Controls m_Wrapper;
-        public MouseActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Press => m_Wrapper.m_Mouse_Press;
-        public InputAction @Position => m_Wrapper.m_Mouse_Position;
-        public InputActionMap Get() { return m_Wrapper.m_Mouse; }
+        public CommandsActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Press => m_Wrapper.m_Commands_Press;
+        public InputAction @Position => m_Wrapper.m_Commands_Position;
+        public InputActionMap Get() { return m_Wrapper.m_Commands; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MouseActions set) { return set.Get(); }
-        public void AddCallbacks(IMouseActions instance)
+        public static implicit operator InputActionMap(CommandsActions set) { return set.Get(); }
+        public void AddCallbacks(ICommandsActions instance)
         {
-            if (instance == null || m_Wrapper.m_MouseActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_MouseActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_CommandsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CommandsActionsCallbackInterfaces.Add(instance);
             @Press.started += instance.OnPress;
             @Press.performed += instance.OnPress;
             @Press.canceled += instance.OnPress;
@@ -164,7 +186,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Position.canceled += instance.OnPosition;
         }
 
-        private void UnregisterCallbacks(IMouseActions instance)
+        private void UnregisterCallbacks(ICommandsActions instance)
         {
             @Press.started -= instance.OnPress;
             @Press.performed -= instance.OnPress;
@@ -174,22 +196,22 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Position.canceled -= instance.OnPosition;
         }
 
-        public void RemoveCallbacks(IMouseActions instance)
+        public void RemoveCallbacks(ICommandsActions instance)
         {
-            if (m_Wrapper.m_MouseActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_CommandsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IMouseActions instance)
+        public void SetCallbacks(ICommandsActions instance)
         {
-            foreach (var item in m_Wrapper.m_MouseActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_CommandsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_MouseActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_CommandsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public MouseActions @Mouse => new MouseActions(this);
-    public interface IMouseActions
+    public CommandsActions @Commands => new CommandsActions(this);
+    public interface ICommandsActions
     {
         void OnPress(InputAction.CallbackContext context);
         void OnPosition(InputAction.CallbackContext context);

@@ -9,7 +9,8 @@ public class Vase : MonoBehaviour
     {
         Thirsty,
         Growing,
-        Grown
+        Grown,
+        Finish
     }
 
     private State state;
@@ -26,6 +27,10 @@ public class Vase : MonoBehaviour
 
     private WaterCount waterCount;
 
+    private ParticleSystem hitEffect;
+
+    private VaseSound sound;
+
     private void Start()
     {
         waterGained = 0;
@@ -33,6 +38,10 @@ public class Vase : MonoBehaviour
         waterCount=this.GetComponentInChildren<WaterCount>();
         plant = this.transform.GetChild(0).gameObject;
         flower = this.transform.Find("Flower").gameObject;
+        hitEffect=this.transform.Find("Particle System").GetComponent<ParticleSystem>();
+        sound=this.GetComponent<VaseSound>();
+        hitEffect.Clear();
+        
     }
 
     private void Update()
@@ -62,7 +71,15 @@ public class Vase : MonoBehaviour
         Vector3 pos = plant.transform.position;
         pos += plant.transform.up * 1f*waterGained;
         plant.transform.position=pos;
+        sound.DoSoundHit();
+        StartCoroutine(ParticleEffect());
         state = (waterGained == waterNeeds) ? State.Grown : State.Thirsty;
+    }
+
+    private IEnumerator ParticleEffect()
+    {
+        hitEffect.Play();
+        yield return null;
     }
 
     private void GrownState()
@@ -72,6 +89,8 @@ public class Vase : MonoBehaviour
         pos += plant.transform.up * plant.transform.localScale.y/2;
         pos.z=flower.transform.position.z;
         flower.transform.position=pos;
+        sound.DoSoundComplete();
+        state = State.Finish;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -87,7 +106,7 @@ public class Vase : MonoBehaviour
 
     public bool IsBloomed()
     {
-        return state==State.Grown;
+        return state==State.Finish;
     }
 
     public int GetWaterNeeds()

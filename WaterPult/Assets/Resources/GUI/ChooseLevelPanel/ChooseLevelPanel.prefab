@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9db3dda7ab8a5d47b3400cd206fe1e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53bb060d6a619834cae7d0cf5414e31e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -125,7 +125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.78666663}
   m_AnchorMax: {x: 0.9831303, y: 1}
-  m_AnchoredPosition: {x: 4.5000916, y: -0.76000977}
+  m_AnchoredPosition: {x: 4.500122, y: -0.76000977}
   m_SizeDelta: {x: 8.5, y: 1.5100021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4183143688073141778
@@ -183,12 +183,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 145.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
-  m_fontSizeMax: 50
+  m_fontSizeMax: 1000
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -358,6 +358,14 @@ PrefabInstance:
     - target: {fileID: 4297799298253087271, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
       propertyPath: m_Name
       value: LevelButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378819251071039540, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: m_fontSize
+      value: 145.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378819251071039540, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -590,6 +598,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8378819251071039540, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: m_fontSize
+      value: 145.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378819251071039540, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -820,6 +836,14 @@ PrefabInstance:
     - target: {fileID: 8378819251071039540, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
       propertyPath: m_text
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378819251071039540, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: m_fontSize
+      value: 145.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378819251071039540, guid: 84ff406793e8d6841860fae8835ee62d, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

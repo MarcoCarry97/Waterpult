@@ -67,6 +67,7 @@ public class SystemController : MonoBehaviour
 
     private void ResultState()
     {
+        DisableInput();
         ResultPanel panel=GameController.Instance.Gui.GetActivePanel() as ResultPanel;
         bool allBloomed = vases.Select<Vase, bool>(vase => vase.IsBloomed()).Aggregate<bool>((acc, data) => acc && data);
         panel.Result = allBloomed ? "You Win!" : "Game Over";
@@ -81,6 +82,7 @@ public class SystemController : MonoBehaviour
         bool allDisappeared = runningBullets.Count() == 0;
         if (!catapult.HasBulletLoaded()&& AvailableBullets>0 && allDisappeared)
         {
+            EnableInput();
             catapult.Load();
             AvailableBullets--;
             UpdateGui();
@@ -115,6 +117,18 @@ public class SystemController : MonoBehaviour
     public void Clear()
     {
         Start();
+    }
+
+    private void EnableInput()
+    {
+        InputController input=GameObject.FindObjectOfType<InputController>();
+        input.Enable();
+    }
+
+    private void DisableInput()
+    {
+        InputController input = GameObject.FindObjectOfType<InputController>();
+        input.Disable();
     }
 
 }

@@ -19,7 +19,7 @@ public class StartPanel : Panel
         eventSystem = EventSystem.current;
         playButton = this.transform.Find("ButtonGroup/StartButton").GetComponent<Button>();
         quitButton = this.transform.Find("ButtonGroup/QuitButton").GetComponent<Button>();
-        eventSystem.SetSelectedGameObject(playButton.gameObject);
+        //eventSystem.SetSelectedGameObject(playButton.gameObject);
         playButton.onClick.AddListener(OnPlay);
         quitButton.onClick.AddListener(OnQuit);
     }

@@ -2,7 +2,7 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Mouse",
+            "name": "Commands",
             "id": "df8d55bf-b834-45b2-9105-67cc07158518",
             "actions": [
                 {
@@ -38,8 +38,30 @@
                 },
                 {
                     "name": "",
+                    "id": "9d8ce36d-66e8-4567-9429-181342b85b43",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "aea5dbb8-96bc-4c11-b733-81decdf8951d",
                     "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96f2de64-ab31-4648-b21b-ae5dd9c9163a",
+                    "path": "<Touchscreen>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
