@@ -7,6 +7,9 @@ public class Rope2D : MonoBehaviour
 {
     private Transform anchor;
 
+    private Transform parent;
+
+    [SerializeField]
     private Transform attached;
 
     private Transform body;
@@ -31,6 +34,7 @@ public class Rope2D : MonoBehaviour
     {
         anchor = this.transform;
         body=this.transform.GetChild(0);
+        parent = this.transform.parent;
     }
 
     private void Update()
@@ -66,6 +70,8 @@ public class Rope2D : MonoBehaviour
 
     private void DistanceConstraint()
     {
+        if(parent != null)
+            this.transform.position = parent.transform.position;
         Vector3 vector = attached.position - anchor.position;
         float length=vector.magnitude;
         if (length > ropeLength)

@@ -7,11 +7,17 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(fileName ="LevelAsset", menuName ="LevelAsset")]
 public class LevelAsset : ScriptableObject
 {
+
     [SerializeField]
     private string levelName;
 
     [SerializeField]
     private string sceneName;
+
+    public string GetLevelName()
+    { 
+        return levelName;
+    }
 
     public IEnumerator LoadScene(Action OnSceneLoaded)
     {
